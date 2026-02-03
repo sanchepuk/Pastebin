@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SanchepukPastebin - Paste</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <h1>SanchepukPastebin</h1>
+    <a href="/" class="button">Home</a>
+</header>
+
+<div class="container">
+    <div class="paste" th:text="${paste.data}"></div>
+
+    <!-- Кнопка копирования ссылки -->
+    <button class="copy-button" onclick="copyLink()">Copy Link</button>
+</div>
+
+<script>
+    function copyLink() {
+        // Копируем текущий URL страницы
+        navigator.clipboard.writeText(window.location.href)
+            .then(() => alert("Link copied to clipboard!"))
+            .catch(err => alert("Failed to copy link: " + err));
+    }
+</script>
+
+</body>
+</html>

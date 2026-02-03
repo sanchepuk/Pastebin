@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SanchepukPastebin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <h1>SanchepukPastebin</h1>
+    <a href="http://localhost:8080/" class="button">Home</a>
+</header>
+
+<div class="container">
+    <h1>Public Pastes</h1>
+
+    <ul>
+        <li th:each="paste : ${pastes}" th:text="${paste.data}"></li>
+    </ul>
+
+    <hr>
+
+    <h2>Add New Paste</h2>
+    <form th:action="@{/}" th:object="${pasteRequest}" method="post">
+
+        <label>Paste data:</label>
+        <input type="text" th:field="*{data}" placeholder="Your paste" required>
+
+        <label>Is Public:</label>
+        <select th:field="*{publicStatus}">
+            <option th:value="PUBLIC">Public</option>
+            <option th:value="UNLISTED">Unlisted</option>
+        </select>
+
+        <label>Expiration Time (seconds):</label>
+        <input type="number" th:field="*{expirationTimeSeconds}" min="1" placeholder="Seconds" required>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
