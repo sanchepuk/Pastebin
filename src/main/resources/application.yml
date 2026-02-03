@@ -1,11 +1,13 @@
 app:
-  host: http://localhost:8080
+  host: ${APP_HOST}
   public_list_size: 10
+
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres  # ?????? postgres
-    password: 3132
+    datasource:
+      url: ${SPRING_DATASOURCE_URL}
+      username: ${SPRING_DATASOURCE_USERNAME}
+      password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
       connection-timeout: 20000
@@ -13,12 +15,9 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update  # ??? validate, ???? ??????? ??? ???????
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-        jdbc:
-          lob:
-            non_contextual_creation: true
-    show-sql: true  # ?????? SQL ? ???????
+    show-sql: true
